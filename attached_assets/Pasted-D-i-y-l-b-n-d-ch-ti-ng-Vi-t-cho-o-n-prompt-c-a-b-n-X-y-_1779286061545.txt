@@ -1,0 +1,243 @@
+Dưới đây là bản dịch tiếng Việt cho đoạn prompt của bạn:
+
+Xây dựng một trang web công ty công nghiệp Việt Nam hoàn chỉnh, sẵn sàng đưa vào hoạt động thực tế (production-ready) cho Công ty TNHH Đa Lạc Việt Nam bằng Next.js 14 (App Router) + Tailwind CSS. Sẵn sàng triển khai trên Vercel.
+
+═══════════════════════════════════════
+NHẬN DIỆN THƯƠNG HIỆU — NGHIÊM NGẶT
+═══════════════════════════════════════
+Màu sắc:
+--navy:      #0D1B3E  (nền chính)
+--navy-dark: #070F24  (các vùng nền tối)
+--red:       #C0151A  (màu nhấn / Nút kêu gọi hành động - CTA)
+--red-dark:  #8A0E12  (trạng thái khi di chuột qua - hover)
+--gold:      #C9A84C  (tô sáng / tiêu đề)
+--gold-light:#E8C96C  (điểm cuối của dải màu gradient)
+--silver:    #B8C4D4  (văn bản phụ)
+--cream:     #EDE5D0  (văn bản nội dung)
+
+Kiểu chữ:
+
+* Bebas Neue → tiêu đề các phần, phần giới thiệu chính (hero), số liệu
+* Oswald     → nhãn, thanh điều hướng, tiêu đề phụ
+* PT Serif   → các đoạn văn bản nội dung
+Nhập (Import) từ Google Fonts.
+
+Phong cách: Russian Constructivist (Kiến tạo Nga) — sử dụng đường cắt chéo (polygon/clip-path), các khối hình học đậm nét, bố cục bất đối xứng, bảng màu đỏ/navy/vàng kim mạnh mẽ. KHÔNG dùng thẻ (cards) bo góc. KHÔNG dùng bóng đổ mờ (soft shadows). Góc cạnh, mang đậm tính công nghiệp, táo bạo.
+
+═══════════════════════════════════════
+THÔNG TIN CÔNG TY
+═══════════════════════════════════════
+Tên:       Da Lac Vietnam Co., Ltd / Công ty TNHH Đa Lạc Việt Nam
+MST:       3603806518
+Địa chỉ:   Số 32 Quảng Tiến 4, Trảng Bom, Đồng Nai, Việt Nam
+Điện thoại: +84 903 153 385
+Email:     hello@dalacvietnam.com.vn
+Website:   [www.dalacvietnamqm.com](https://www.google.com/search?q=https://www.dalacvietnamqm.com).vn
+Giám đốc:  Lê Dụng Quang
+
+Khẩu hiệu EN: PROTECTING INDUSTRIAL ASSETS — EXPANDING GLOBAL MARKETS
+Khẩu hiệu VI: BẢO VỆ TÀI SẢN CÔNG NGHIỆP – MỞ RỘNG THỊ TRƯỜNG TOÀN CẦU
+
+3 Trụ cột Kinh doanh:
+
+1. INDUSTRIAL SERVICES / Dịch vụ công nghiệp
+2. MARINE TRADING / Thương mại hàng hải
+3. PROJECT DEVELOPMENT / Phát triển dự án
+
+═══════════════════════════════════════
+CÁC TRANG & CẤU TRÚC
+═══════════════════════════════════════
+/ (Trang chủ)
+/about (Giới thiệu)
+/services (Dịch vụ)
+/products (Sản phẩm)
+/contact (Liên hệ)
+
+═══════════════════════════════════════
+TRANG: CHỦ (/)
+═══════════════════════════════════════
+PHẦN 1 — Màn hình chính (Hero):
+
+* Nền màu xanh navy tối tràn toàn bộ màn hình (Full-viewport)
+* Khối đa giác cắt chéo màu đỏ ở góc trên bên phải (clip-path)
+* Thanh gạch ngang màu vàng kim tạo điểm nhấn
+* Tiêu đề chữ lớn dùng font Bebas Neue (các dòng đặt so le trục x, bất đối xứng):
+Dòng 1 x-offset=0:  "PROTECTING"
+Dòng 2 x-offset=40: "INDUSTRIAL ASSETS"
+Dòng 3 x-offset=0:  "EXPANDING" (màu vàng kim)
+Dòng 4 x-offset=60: "GLOBAL MARKETS"
+* Khẩu hiệu phụ tiếng Việt ở phía dưới dùng font Oswald Light
+* Logo ở góc trên bên trái với viền tròn màu vàng kim
+* Các hình tròn trang trí theo phong cách Kiến tạo ở góc trên bên phải (màu vàng kim, độ mờ thấp)
+* Dòng chữ dọc ở sát cạnh phải: "INDUSTRIAL SERVICES · MARINE TRADING · PROJECT DEVELOPMENT"
+
+PHẦN 2 — Thanh 3 Trụ cột:
+
+* Dải màu tối rộng toàn màn hình chia làm 3 cột, vạch phân cách dọc màu vàng kim
+* Mỗi cột: biểu tượng (icon) + Tiêu đề tiếng Anh (Oswald 600 màu vàng kim) + Tiêu đề phụ tiếng Việt (Oswald 300 màu bạc)
+
+PHẦN 3 — Giới thiệu / Chúng tôi là ai:
+
+* Nhãn của phần: "ABOUT US / GIỚI THIỆU" (chữ in hoa nhỏ màu đỏ + đường kẻ ngang màu đỏ theo sau)
+* Lưới 2 cột: trái=Đoạn văn tiếng Anh, phải=Đoạn văn tiếng Việt
+* Nội dung: "Da Lac Vietnam Co., Ltd is a dynamic industrial services and export trading company based in Dong Nai Province, Vietnam. We specialize in surface treatment, anti-corrosion coating for gas tanks, storage tanks, and marine vessels — combining technical excellence with global trading capability."
+
+PHẦN 4 — Số liệu Thành tích (4 khối, chiều rộng bất đối xứng):
+
+* Nhãn: "PERFORMANCE / THÀNH TÍCH"
+* 4 khối số liệu với viền trái màu đỏ + nền pha sắc đỏ:
+[XX]+ Projects Done / Dự án hoàn thành
+[XX K] m² Surface Treated / Diện tích xử lý bề mặt
+[XX]+ Vessels & Tanks / Tàu & bồn đã phục vụ
+5+ Core Industries / Ngành trọng tâm
+* Các con số dùng font Bebas Neue 64px màu vàng kim, nhãn dùng font Oswald
+
+PHẦN 5 — Ngành trọng tâm (Lưới dạng thẻ chip):
+
+* Nhãn: "CORE INDUSTRIES / NGÀNH TRỌNG TÂM"
+* 5 thẻ chip có viền vàng kim + điểm nhấn hình vuông nhỏ màu vàng kim ở góc:
+OIL & GAS / Dầu khí
+MARITIME & SHIPBUILDING / Hàng hải & đóng tàu
+HEAVY INDUSTRY / Công nghiệp nặng
+MARINE EQUIPMENT / Thiết bị tàu biển
+FERTILIZER RAW MATERIALS / Nguyên liệu phân bón
+
+PHẦN 6 — Banner Kêu gọi Hành động (CTA):
+
+* Khối cắt chéo màu đỏ rộng toàn màn hình
+* Chữ lớn màu vàng kim: "READY TO WORK TOGETHER?"
+* Phụ đề: "Liên hệ với chúng tôi để được tư vấn"
+* Nút bấm: "CONTACT US" → chuyển đến /contact (nút nền navy tối, viền vàng kim)
+
+═══════════════════════════════════════
+TRANG: DỊCH VỤ (/services)
+═══════════════════════════════════════
+Bố cục: Cột cắt chéo màu đỏ bên trái (giống trang hồ sơ năng lực 2) + nội dung bên phải
+
+Cột trái (danh sách dịch vụ):
+TECHNICAL SERVICES / Dịch vụ kỹ thuật:
+• Sandblasting & Painting for Gas Tanks
+Phun cát & sơn bồn chứa khí gas
+• Surface Treatment for Storage Tanks
+Xử lý bề mặt kết cấu bồn bể
+• Anti-Corrosion Coating – Marine Industry
+Sơn phủ chống ăn mòn ngành hàng hải
+
+PROJECT SUPPORT & TRADING / Hỗ trợ dự án & thương mại:
+• Industrial Export Trading / Thương mại xuất khẩu công nghiệp
+• EPC Support (Engineering – Procurement – Construction)
+• Joint Venture Development / Phát triển liên doanh
+
+PAINT BRANDS WE TRADE / Nhãn hàng sơn phân phối:
+• International Paint (AkzoNobel)
+• Jotun, KCC Paint (Korea)
+• Á Đông, Hải Âu, Thế Hệ Mới
+
+Cột phải:
+CORE VALUES (Lưới 2×2, các thẻ có viền vàng kim):
+SAFETY / An toàn — "Mọi hoạt động đặt an toàn lên hàng đầu."
+QUALITY / Chất lượng — "Chất lượng kỹ thuật vượt trội trong từng dự án."
+PARTNERSHIP / Hợp tác — "Liên minh chiến lược dài hạn, minh bạch."
+GROWTH / Phát triển — "Mở rộng thị trường qua đổi mới và liên doanh."
+
+WHY CHOOSE US (Danh sách đánh số, huy hiệu hình vuông màu đỏ):
+01 COATING SPECIALIST – FULL CYCLE
+Từ sandblasting chuẩn bị bề mặt đến sơn anti-corrosion hoàn thiện.
+02 PREMIUM PAINT ACCESS
+AkzoNobel, Jotun, KCC — cung ứng trực tiếp cho ngành hàng hải.
+03 OIL & GAS SECTOR ACCESS
+Đàm phán hợp tác chiến lược với Vietsovpetro cho dự án công nghiệp.
+
+═══════════════════════════════════════
+TRANG: SẢN PHẨM (/products)
+═══════════════════════════════════════
+Các thẻ tag sản phẩm thương mại (viền đỏ):
+MARINE PAINTS / Sơn tàu biển
+ANTI-CORROSION COATING / Sơn chống ăn mòn
+EPOXY SYSTEMS / Hệ thống sơn epoxy
+MARINE EQUIPMENT / Thiết bị tàu biển
+FERTILIZER RAW MATERIALS / Nguyên liệu phân bón
+
+Khung giữ chỗ hình ảnh sản phẩm: 4 hộp có viền nét đứt (dành cho ảnh lon sơn)
+Phần Đối tác Chiến lược:
+"IN ADVANCED DISCUSSIONS WITH VIETSOVPETRO"
+Nội dung: "Đa Lạc Việt Nam đang trong giai đoạn đàm phán hợp tác chiến lược với Bộ phận Cơ điện & Năng lượng Vietsovpetro — kết hợp năng lực kỹ thuật xử lý bề mặt với mạng lưới dầu khí sẵn có."
+
+═══════════════════════════════════════
+TRANG: GIỚI THIỆU (/about)
+═══════════════════════════════════════
+Toàn bộ văn bản giới thiệu song ngữ Anh - Việt.
+Dải thông tin chứng nhận: [ISO XXXX] · [Chứng nhận kỹ thuật] · MST: 3603806518
+Thẻ thông tin Giám đốc: Lê Dụng Quang — Director
+
+═══════════════════════════════════════
+TRANG: LIÊN HỆ (/contact)
+═══════════════════════════════════════
+Lưới liên hệ 3 cột (cùng phong cách với phần footer):
+ADDRESS: No.32 Quang Tien 4, Trang Bom, Dong Nai, Vietnam
+PHONE: +84 903 153 385
+EMAIL: hello@dalacvietnam.com.vn
+WEBSITE: [www.dalacvietnamqm.com](https://www.google.com/search?q=https://www.dalacvietnamqm.com).vn
+
+Biểu mẫu liên hệ: Tên, Công ty, Số điện thoại, Lời nhắn, Nút Gửi (nền đỏ)
+Khung giữ chỗ (placeholder) nhúng bản đồ Google Map
+
+═══════════════════════════════════════
+CÁC THÀNH PHẦN CHUNG (GLOBAL COMPONENTS)
+═══════════════════════════════════════
+THANH ĐIỀU HƯỚNG (NAVBAR):
+
+* Nền màu xanh navy tối (#070F24)
+* Logo bên trái + "DA LAC VIETNAM" font Bebas Neue
+* Liên kết điều hướng: Home · About · Services · Products · Contact
+* Viền dưới màu vàng kim dày 2px
+* Liên kết đang kích hoạt (Active): đổi màu vàng kim
+* Trên Mobile: menu hamburger, menu dạng ngăn kéo trượt xuống
+
+CHÂN TRANG (FOOTER):
+
+* Xanh navy tối (#070F24), viền trên màu đỏ dày 3px
+* 3 cột: Thông tin công ty | Liên kết nhanh | Liên hệ
+* Dưới cùng: Bản quyền (Copyright) + MST
+* Tên công ty được tô màu vàng kim tạo điểm nhấn
+
+CHUYỂN ĐỔI NGÔN NGỮ (LANGUAGE TOGGLE):
+
+* Nút chuyển EN / VI ở góc trên bên phải thanh điều hướng
+* Tất cả văn bản đều có cả bản EN và VI
+* Sử dụng next-intl hoặc React context cơ bản cho i18n
+
+HIỆU ỨNG CUỘN (SCROLL ANIMATIONS):
+
+* Các phần tử mờ dần từ dưới lên (fade-in from bottom) khi cuộn chuột (sử dụng Intersection Observer)
+* Hiệu ứng nhảy số cho các bộ đếm thống kê khi cuộn tới phần đó
+* Hành vi cuộn mượt mà (Smooth scroll)
+
+═══════════════════════════════════════
+YÊU CẦU KỸ THUẬT
+═══════════════════════════════════════
+Framework:   Next.js 14 App Router
+Styling:     Tailwind CSS (mở rộng file config với màu sắc và font chữ của thương hiệu)
+Fonts:       Google Fonts (Bebas Neue, Oswald, PT Serif)
+Hình ảnh:    Sử dụng next/image với hiệu ứng mờ giữ chỗ (placeholder blur)
+SEO:         Cấu hình metadata trong layout.tsx, thẻ OpenGraph
+Triển khai:  Sẵn sàng cho Vercel (đã cấu hình next.config.js)
+Kết quả file: Toàn bộ bộ khung dự án với tất cả các trang và components
+
+Các Components cần tạo:
+
+* HeroSection.tsx
+* PillarsBar.tsx
+* AboutSection.tsx
+* StatsSection.tsx (có hiệu ứng bộ đếm)
+* IndustriesChips.tsx
+* ServicesLayout.tsx
+* CoreValuesGrid.tsx
+* WhyChooseUs.tsx
+* ProductsGrid.tsx
+* ContactSection.tsx
+* Navbar.tsx
+* Footer.tsx
+* CtaBanner.tsx
+
+Tạo toàn bộ dự án. Bắt đầu với lệnh: npx create-next-app@latest dalac-vietnam --typescript --tailwind --app
