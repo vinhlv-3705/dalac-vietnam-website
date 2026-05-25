@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 interface User {
+  id: string;
   name: string;
   email: string;
   role: string;
@@ -10,6 +11,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => boolean;
   logout: () => void;
+  updateUser: (updates: Partial<User>) => void;
   isAuthenticated: boolean;
 }
 
@@ -18,6 +20,7 @@ const ACCOUNTS: Array<{ email: string; password: string; user: User }> = [
     email: "admin@dalacvietnam.com.vn",
     password: "DaLac@2024",
     user: {
+      id: "admin-001",
       name: "Lê Dụng Quang",
       email: "admin@dalacvietnam.com.vn",
       role: "Giám đốc / Director",
@@ -29,6 +32,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   login: () => false,
   logout: () => {},
+  updateUser: () => {},
   isAuthenticated: false,
 });
 
@@ -65,8 +69,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   };
 
+  const updateUser = (updates: Partial<User>) => {
+    if (user) {
+      setUser({ ...user, ...updates });
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

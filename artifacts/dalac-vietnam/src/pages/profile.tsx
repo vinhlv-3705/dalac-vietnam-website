@@ -10,18 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { User, Mail, Phone, MapPin, Calendar, Briefcase, Save, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-
-interface ProfileData {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  bio: string;
-  position: string;
-  department: string;
-  joinDate: string;
-  avatar: string;
-}
+import { profilesAPI, type ProfileData, type UserProfile } from "@/lib/api/profiles";
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
@@ -39,15 +28,40 @@ export default function Profile() {
   });
 
   const [tempData, setTempData] = useState<ProfileData>(profileData);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Load profile data from localStorage on mount
-    const savedProfile = localStorage.getItem(`profile_${user?.id}`);
-    if (savedProfile) {
-      const data = JSON.parse(savedProfile);
-      setProfileData(data);
-      setTempData(data);
-    }
+    // Load profile data from API on mount
+    const loadProfile = async () => {
+      if (!user?.id) return;
+      
+      try {
+        setLoading(true);
+        const profile = await profilesAPI.getProfile(user.id);
+        
+        if (profile) {
+          const data: ProfileData = {
+            name: profile.name,
+            email: profile.email,
+            phone: profile.phone || "",
+            address: profile.address || "",
+            bio: profile.bio || "",
+            position: profile.position || "",
+            department: profile.department || "",
+            joinDate: profile.joinDate || "",
+            avatar: profile.avatar || ""
+          };
+          setProfileData(data);
+          setTempData(data);
+        }
+      } catch (error) {
+        console.error("Failed to load profile:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfile();
   }, [user?.id]);
 
   const handleEdit = () => {
@@ -60,16 +74,41 @@ export default function Profile() {
     setIsEditing(false);
   };
 
-  const handleSave = () => {
-    setProfileData(tempData);
-    localStorage.setItem(`profile_${user?.id}`, JSON.stringify(tempData));
+  const handleSave = async () => {
+    if (!user?.id) return;
     
-    // Update user context with new name
-    if (updateUser && tempData.name !== user?.name) {
-      updateUser({ ...user!, name: tempData.name });
+    try {
+      setLoading(true);
+      
+      // Save to API
+      const updatedProfile = await profilesAPI.createOrUpdateProfile(user.id, tempData);
+      
+      // Update local state
+      const data: ProfileData = {
+        name: updatedProfile.name,
+        email: updatedProfile.email,
+        phone: updatedProfile.phone || "",
+        address: updatedProfile.address || "",
+        bio: updatedProfile.bio || "",
+        position: updatedProfile.position || "",
+        department: updatedProfile.department || "",
+        joinDate: updatedProfile.joinDate || "",
+        avatar: updatedProfile.avatar || ""
+      };
+      setProfileData(data);
+      
+      // Update user context with new name
+      if (tempData.name !== user?.name) {
+        updateUser({ name: tempData.name });
+      }
+      
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Failed to save profile:", error);
+      alert("Failed to save profile. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    
-    setIsEditing(false);
   };
 
   const handleInputChange = (field: keyof ProfileData, value: string) => {
@@ -144,7 +183,7 @@ export default function Profile() {
                 <Separator className="bg-[#C9A84C]/20" />
                 <div className="flex items-center gap-2 text-sm text-[#B8C4D4]">
                   <Calendar size={14} />
-                  <span>Joined {new Date(profileData.joinDate).toLocaleDateString()}</span>
+                  <span>Joined {profileData.joinDate ? new Date(profileData.joinDate).toLocaleDateString() : "N/A"}</span>
                 </div>
                 {profileData.department && (
                   <div className="flex items-center gap-2">
