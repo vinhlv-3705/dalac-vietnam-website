@@ -68,7 +68,11 @@ export function Navbar() {
 
             {isAuthenticated ? (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 text-[#EDE5D0]">
+                <Link 
+                  href="/profile" 
+                  className="flex items-center gap-2 text-[#EDE5D0] hover:text-[#C9A84C] transition-colors"
+                  title="Profile Settings"
+                >
                   <div className="w-8 h-8 bg-[#C9A84C]/20 border border-[#C9A84C] flex items-center justify-center">
                     <User size={14} className="text-[#C9A84C]" />
                   </div>
@@ -76,7 +80,7 @@ export function Navbar() {
                     <p className="font-sans text-xs font-semibold text-[#C9A84C] leading-none">{user?.name}</p>
                     <p className="font-sans text-[10px] text-[#B8C4D4] leading-none mt-0.5">{user?.role}</p>
                   </div>
-                </div>
+                </Link>
                 <button
                   onClick={handleLogout}
                   data-testid="button-logout"
@@ -114,7 +118,11 @@ export function Navbar() {
         <div className="md:hidden absolute top-20 left-0 w-full bg-[#070F24] border-b-2 border-[#C9A84C] shadow-2xl">
           <div className="flex flex-col px-4 py-6 gap-4">
             {isAuthenticated && (
-              <div className="flex items-center gap-3 p-3 border-l-4 border-[#C9A84C] bg-[#C9A84C]/5 mb-2">
+              <Link 
+                href="/profile" 
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 p-3 border-l-4 border-[#C9A84C] bg-[#C9A84C]/5 mb-2 hover:bg-[#C9A84C]/10 transition-colors"
+              >
                 <div className="w-8 h-8 bg-[#C9A84C]/20 border border-[#C9A84C] flex items-center justify-center">
                   <User size={14} className="text-[#C9A84C]" />
                 </div>
@@ -122,7 +130,7 @@ export function Navbar() {
                   <p className="font-sans text-sm font-semibold text-[#C9A84C]">{user?.name}</p>
                   <p className="font-sans text-xs text-[#B8C4D4]">{user?.role}</p>
                 </div>
-              </div>
+              </Link>
             )}
 
             {navLinks.map((link) => (
