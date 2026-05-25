@@ -80,10 +80,19 @@ export default function Profile() {
     try {
       setLoading(true);
       
-      // Save to API
-      const updatedProfile = await profilesAPI.createOrUpdateProfile(user.id, tempData);
+      const payload: ProfileData = {
+        name: tempData.name,
+        email: tempData.email,
+        phone: tempData.phone || undefined,
+        address: tempData.address || undefined,
+        bio: tempData.bio || undefined,
+        position: tempData.position || undefined,
+        department: tempData.department || undefined,
+        avatar: tempData.avatar || undefined,
+      };
+
+      const updatedProfile = await profilesAPI.createOrUpdateProfile(user.id, payload);
       
-      // Update local state
       const data: ProfileData = {
         name: updatedProfile.name,
         email: updatedProfile.email,
@@ -92,20 +101,20 @@ export default function Profile() {
         bio: updatedProfile.bio || "",
         position: updatedProfile.position || "",
         department: updatedProfile.department || "",
-        joinDate: updatedProfile.joinDate || "",
+        joinDate: updatedProfile.joinDate ? String(updatedProfile.joinDate) : "",
         avatar: updatedProfile.avatar || ""
       };
       setProfileData(data);
       
-      // Update user context with new name
       if (tempData.name !== user?.name) {
         updateUser({ name: tempData.name });
       }
       
       setIsEditing(false);
-    } catch (error) {
-      console.error("Failed to save profile:", error);
-      alert("Failed to save profile. Please try again.");
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      console.error("Failed to save profile:", msg);
+      alert(`Lưu thất bại: ${msg}`);
     } finally {
       setLoading(false);
     }
