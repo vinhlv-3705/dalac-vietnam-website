@@ -1,5 +1,4 @@
 import { pgTable, text, timestamp, serial, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const userProfilesTable = pgTable("user_profiles", {
@@ -18,10 +17,17 @@ export const userProfilesTable = pgTable("user_profiles", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const insertUserProfileSchema = createInsertSchema(userProfilesTable).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
+export const insertUserProfileSchema = z.object({
+  userId: z.string().max(255),
+  name: z.string().max(255),
+  email: z.string().email().max(255),
+  phone: z.string().max(50).nullable().optional(),
+  address: z.string().nullable().optional(),
+  bio: z.string().nullable().optional(),
+  position: z.string().max(100).nullable().optional(),
+  department: z.string().max(100).nullable().optional(),
+  avatar: z.string().nullable().optional(),
+  joinDate: z.coerce.date().optional(),
 });
 
 export const updateUserProfileSchema = insertUserProfileSchema.partial();
